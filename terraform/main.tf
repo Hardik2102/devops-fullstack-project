@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "frontend" {
   ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"
-  key_name      = "test.pem"
+  key_name      = "test"
 
   root_block_device {
     volume_size           = 20
@@ -21,7 +21,7 @@ resource "aws_instance" "frontend" {
 resource "aws_instance" "backend" {
   ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"
-  key_name      = "test.pem"
+  key_name      = "test"
 
   root_block_device {
     volume_size           = 20
@@ -37,7 +37,7 @@ resource "aws_instance" "backend" {
 resource "aws_instance" "monitoring" {
   ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"
-  key_name      = "test.pem"
+  key_name      = "test"
 
   root_block_device {
     volume_size           = 15
