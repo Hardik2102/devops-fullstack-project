@@ -1,0 +1,27 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/your-repo/project.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t your-username/project:latest .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sshagent(['your-ssh-credential']) {
+                    sh 'scp -o StrictHostKeyChecking=no docker-compose.yml ubuntu@your-ec2:/home/ubuntu/'
+                    sh 'ssh ubuntu@your-ec2 "docker-compose down && docker-compose up -d"'
+                }
+            }
+        }
+    }
+}
